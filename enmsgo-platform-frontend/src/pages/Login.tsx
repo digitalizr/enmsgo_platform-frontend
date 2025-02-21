@@ -1,14 +1,14 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/authService";
 import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login: React.FC = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const data = await loginUser(credentials);
